@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ship</title> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  </head>
+
+  <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class = "container">
+          <a class="navbar-brand" href="#"><i class="fas fa-shipping-fast"></i> Ship Yard</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Ship</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="status.html">Status</a>
+              </li>
+              
+            </ul>
+            <ul class = "nav navbar-nav navbar-right">
+                <li style="padding-right:30px"><a href = "Signup.html">Sign Up <i class = "fa fa-user-plus"></i></a></li>
+                <li><a href = "login.html">Login <i class = "fa fa-user"></i></a></li>
+            </ul>
+            
+          </div>
+        </nav>
+        </div>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Ship Your Goods</h1>
+              <h3 class="lead">Now, <strong>RELAX</strong>...</h3>
+            </div>
+          </div>
+        
+        <div id="content">
+          <div class='container'>
+            <div class='row'>
+              <div class='col-6'>
+                  <div name='order' id='order'>
+                    <p>Order Type: </p>
+                    <br>
+                    <input value="1" type="radio" name="formselector" onClick="displayForm(this)"></input>Single Shipment
+                    <div style="display:none" id="singleContainer">
+                    <form id="single"> 
+                    <dd>
+                        <br>
+                        <label>Item Name: </label>
+                        <input type="text" name='item' placeholder="Item Name"><br><br>
+                        <label>Quantity: </label>
+                        <input type="text" name='quant' placeholder="Quantity"><br><br>
+                        <label>Source: </label><br>
+                        <input type='text' name='src1' placeholder='Floor/Building'><br>
+                        <input type='text' name='src2' placeholder='Street/Colony'><br>
+                        <input type='text' name='src3' placeholder='City'><br>
+                        <input type='text' name='src4' placeholder='State'><br>
+                        <input type='text' name='src5' placeholder='Pin Code'>
+                        <br><br>
+                        <label>Destination: </label><br>
+                        <input type='text' name='dest1' placeholder='Floor/Building'><br>
+                        <input type='text' name='dest2' placeholder='Street/Colony'><br>
+                        <input type='text' name='dest3' placeholder='City'><br>
+                        <input type='text' name='dest4' placeholder='State'><br>
+                        <input type='text' name='dest5' placeholder='Pin Code'>
+                        <br><br>
+                        <label for='shipdate'>Shipping Date: </label>
+                        <input type="date" name='shippingDate' id='shipdate' value="2019-03-07">
+                        <br><br>
+                        <input type="submit" name="submit1" value="Place Order">
+                      </dd> 
+                      <form>
+                      </div>
+                      <br>
+                      <input value="2" type="radio" name="formselector" onClick="displayForm(this)"></input>Bulk Shipment
+                      <div style="display:none" id="bulkContainer">
+                        <form id="bulk" action='/bulkShipment' method="POST" enctype="multipart/form-data">
+                          <dd>
+                            <br>
+                             <label>Select file: </label>
+                             <input type="file" name='csvselect' accept=".csv,.xls,.xlsx">
+                             <br><br>
+                             <input type="submit" name="submit2" value="Place Order">
+                          </dd>
+                         </form>
+                      </div>
+                      <br><br>
+                    </div>
+                                  
+                  </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    <script>
+      function displayForm(c) {
+          if (c.value == "2") {    
+              jQuery('#bulkContainer').toggle('show');
+              jQuery('#singleContainer').hide();
+          }
+          if (c.value == "1") {
+              jQuery('#singleContainer').toggle('show');
+              jQuery('#bulkContainer').hide();
+          }
+      };
+
+      $('input[name=submit1]').on('click', (event) => {
+        console.log(event);
+        event.preventDefault();
+        var item  = $('input[name=item]').value;
+        var quantity = $('input[name=quant]').value;
+        var src_floor = $('input[name=src1]').value;
+        var src_street = $('input[name=src2]').value;
+        var src_city = $('input[name=src3]').value;
+        var src_state = $('input[name=src4]').value;
+        var src_pinCode = $('input[name=src5]').value;
+        var dest_floor = $('input[name=dest1]').value;
+        var dest_street = $('input[name=dest2]').value;
+        var dest_city = $('input[name=dest3]').value;
+        var dest_state = $('input[name=dest4]').value;
+        var dest_pinCode = $('input[name=dest5]').value;
+        var shippingDate = $('input[name=shippingDate]').value;          
+        fetch('/ship', {}).then((res) => {
+          
+        }).catch();
+      });
+
+      $('input[name=submit2]').on('click', () => {
+        var item = $('input[name=item]').value;
+        var quantity = $('input[name=quant]').value;
+        var src_floor = $('input[name=src1]').value;
+        var src_street = $('input[name=src2]').value;
+        var src_city = $('input[name=src3]').value;
+        var src_state = $('input[name=src4]').value;
+        var src_pinCode = $('input[name=src5]').value;
+        var dest_floor = $('input[name=dest1]').value;
+        var dest_street = $('input[name=dest2]').value;
+        var dest_city = $('input[name=dest3]').value;
+        var dest_state = $('input[name=dest4]').value;
+        var dest_pinCode = $('input[name=dest5]').value;
+        var shippingDate = $('input[name=shippingDate]').value;          
+        fetch('/ship', {}).then((res) => {
+          
+        }).catch();
+      });
+  </script>
+</body>
+</html>
